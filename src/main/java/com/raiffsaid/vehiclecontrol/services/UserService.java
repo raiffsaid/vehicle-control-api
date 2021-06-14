@@ -32,4 +32,17 @@ public class UserService {
 
         return new UserDTO(entity);
     }
+
+    @Transactional
+    public UserDTO insert(UserDTO dto) {
+        User entity = new User();
+
+        entity.setName(dto.getName());
+        entity.setEmail(dto.getEmail());
+        entity.setCpf(dto.getCpf());
+        entity.setBirthDate(dto.getBirthDate());
+        entity = repository.save(entity);
+
+        return new UserDTO(entity);
+    }
 }
