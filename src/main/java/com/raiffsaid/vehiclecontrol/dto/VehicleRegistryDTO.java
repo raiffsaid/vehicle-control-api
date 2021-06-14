@@ -4,41 +4,26 @@ import com.raiffsaid.vehiclecontrol.entities.Vehicle;
 
 import java.io.Serializable;
 
-public class VehicleDTO implements Serializable {
+public class VehicleRegistryDTO implements Serializable {
 
-    private Long id;
     private Long userId;
     private String carmaker;
     private String model;
     private Integer year;
-    private String price;
 
-    public VehicleDTO() {
+    public VehicleRegistryDTO() {
     }
 
-    public VehicleDTO(VehicleRegistryDTO vehicleRegistryDTO, FipeVehicleDTO fipeVehicleDTO) {
-        this.userId = vehicleRegistryDTO.getUserId();
-        this.carmaker = fipeVehicleDTO.getMarca();
-        this.model = fipeVehicleDTO.getModelo();
-        this.year = fipeVehicleDTO.getAnoModelo();
-        this.price = fipeVehicleDTO.getValor();
+    public VehicleRegistryDTO(String carmaker, String model, Integer year) {
+        this.carmaker = carmaker;
+        this.model = model;
+        this.year = year;
     }
 
-    public VehicleDTO(Vehicle entity) {
-        this.id = entity.getId();
-        this.userId = entity.getUser().getId();
+    public VehicleRegistryDTO(Vehicle entity) {
         this.carmaker = entity.getCarmaker();
         this.model = entity.getModel();
         this.year = entity.getYear();
-        this.price = entity.getPrice();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getCarmaker() {
@@ -71,13 +56,5 @@ public class VehicleDTO implements Serializable {
 
     public void setUserId(Long user_id) {
         this.userId = user_id;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 }
