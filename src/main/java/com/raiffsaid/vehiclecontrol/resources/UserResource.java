@@ -21,4 +21,11 @@ public class UserResource {
 
         return ResponseEntity.ok().body(list);
     }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<UserDTO> findById(@PathVariable Long id) {
+        UserDTO dto = service.findById(id);
+
+        return ResponseEntity.ok().body(dto);
+    }
 }
