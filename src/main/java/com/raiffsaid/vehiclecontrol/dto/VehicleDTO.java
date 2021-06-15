@@ -32,6 +32,29 @@ public class VehicleDTO implements Serializable {
         this.model = entity.getModel();
         this.year = entity.getYear();
         this.price = entity.getPrice();
+        int lastDigit = entity.getYear() % 10;
+        switch (lastDigit) {
+            case 0:
+            case 1:
+                this.rotationDay = "segunda-feira";
+                break;
+            case 2:
+            case 3:
+                this.rotationDay = "terça-feira";
+                break;
+            case 4:
+            case 5:
+                this.rotationDay = "quarta-feira";
+                break;
+            case 6:
+            case 7:
+                this.rotationDay = "quinta-feira";
+                break;
+            case 8:
+            case 9:
+                this.rotationDay = "sexta-feira";
+                break;
+        }
     }
 
     public Long getId() {
@@ -80,5 +103,13 @@ public class VehicleDTO implements Serializable {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getRotationDay() {
+        return rotationDay;
+    }
+
+    public void setRotationDay(String rotationDay) {
+        this.rotationDay = rotationDay;
     }
 }
