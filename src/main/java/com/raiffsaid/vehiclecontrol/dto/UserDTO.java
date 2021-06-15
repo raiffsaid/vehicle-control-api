@@ -1,9 +1,12 @@
 package com.raiffsaid.vehiclecontrol.dto;
 
 import com.raiffsaid.vehiclecontrol.entities.User;
+import com.raiffsaid.vehiclecontrol.entities.Vehicle;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDTO implements Serializable {
 
@@ -12,6 +15,8 @@ public class UserDTO implements Serializable {
     private String email;
     private String cpf;
     private LocalDate birthDate;
+
+    private List<VehicleDTO> vehicles = new ArrayList<>();
 
     public UserDTO() {
     }
@@ -30,6 +35,10 @@ public class UserDTO implements Serializable {
         this.email = entity.getEmail();
         this.cpf = entity.getCpf();
         this.birthDate = entity.getBirthDate();
+
+        for (Vehicle vehicle : entity.getVehicles()) {
+            this.vehicles.add(new VehicleDTO(vehicle));
+        }
     }
 
     public Long getId() {
@@ -50,5 +59,9 @@ public class UserDTO implements Serializable {
 
     public LocalDate getBirthDate() {
         return birthDate;
+    }
+
+    public List<VehicleDTO> getVehicles() {
+        return vehicles;
     }
 }

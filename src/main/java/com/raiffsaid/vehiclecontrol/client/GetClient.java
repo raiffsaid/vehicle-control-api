@@ -13,5 +13,5 @@ public interface GetClient {
     @GetMapping(value = "/carros/marcas/{carmaker}/modelos/{model}/anos/{year}-3")
     FipeVehicleDTO vehiclePrice(@PathVariable("carmaker") String carmaker,
                                 @PathVariable("model") String model,
-                                @PathVariable("year") String year);
+                                @PathVariable("year") Integer year);
 }

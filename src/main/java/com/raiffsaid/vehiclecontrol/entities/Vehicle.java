@@ -22,8 +22,8 @@ public class Vehicle implements Serializable {
     @Column
     private String price; //BIGDECIMAL
 
-    @JsonIgnore // Barra a serialização do objeto JSON
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 

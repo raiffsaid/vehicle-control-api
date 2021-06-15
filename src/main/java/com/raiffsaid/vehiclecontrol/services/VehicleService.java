@@ -5,6 +5,7 @@ import com.raiffsaid.vehiclecontrol.entities.User;
 import com.raiffsaid.vehiclecontrol.entities.Vehicle;
 import com.raiffsaid.vehiclecontrol.repositories.UserRepository;
 import com.raiffsaid.vehiclecontrol.repositories.VehicleRepository;
+import com.raiffsaid.vehiclecontrol.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,17 +31,16 @@ public class VehicleService {
 
     @Transactional
     public VehicleDTO insert(VehicleDTO dto) {
-        Vehicle entity = new Vehicle();
-        User user = userRepository.findById(dto.getUserId()).orElse(null);
-//        user.setId(dto.getUserId());
+        Vehicle vehicleEntity = new Vehicle();
+        User userEntity = userRepository.findById(dto.getUserId()).orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
 
-        entity.setCarmaker(dto.getCarmaker());
-        entity.setModel(dto.getModel());
-        entity.setYear(dto.getYear());
-        entity.setPrice(dto.getPrice());
-        entity.setUser(user);
-        entity = repository.save(entity);
+        vehicleEntity.setCarmaker(dto.getCarmaker());
+        vehicleEntity.setModel(dto.getModel());
+        vehicleEntity.setYear(dto.getYear());
+        vehicleEntity.setPrice(dto.getPrice());
+        vehicleEntity.setUser(userEntity);
+        vehicleEntity = repository.save(vehicleEntity);
 
-        return new VehicleDTO(entity);
+        return new VehicleDTO(vehicleEntity);
     }
 }

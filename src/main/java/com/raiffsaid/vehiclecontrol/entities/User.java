@@ -25,11 +25,12 @@ public class User implements Serializable {
     @Column
     @CPF
     private String cpf;
-    @Column
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private LocalDate birthDate;
 
-    @OneToMany(mappedBy = "user")
-    List<Vehicle> vehicles = new ArrayList<>();
+    @OneToMany(mappedBy = "user",
+            orphanRemoval = true)
+    private List<Vehicle> vehicles = new ArrayList<>();
 
     public User() {
     }
