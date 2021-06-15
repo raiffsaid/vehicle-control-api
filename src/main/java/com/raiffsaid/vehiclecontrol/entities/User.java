@@ -19,10 +19,10 @@ public class User implements Serializable {
     private Long id;
     @Column
     private String name;
-    @Column
+    @Column(unique = true)
     @Email
     private String email;
-    @Column
+    @Column(unique = true)
     @CPF
     private String cpf;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")

@@ -1,6 +1,5 @@
 package com.raiffsaid.vehiclecontrol.dto;
 
-import com.raiffsaid.vehiclecontrol.entities.User;
 import com.raiffsaid.vehiclecontrol.entities.Vehicle;
 
 import java.io.Serializable;
@@ -13,18 +12,17 @@ public class VehicleDTO implements Serializable {
     private String model;
     private Integer year;
     private String price;
-
-    private User user;
+    private String rotationDay;
 
     public VehicleDTO() {
     }
 
     public VehicleDTO(VehicleRegistryDTO vehicleRegistryDTO, FipeVehicleDTO fipeVehicleDTO) {
         this.userId = vehicleRegistryDTO.getUserId();
-        this.carmaker = fipeVehicleDTO.getMarca();
-        this.model = fipeVehicleDTO.getModelo();
-        this.year = fipeVehicleDTO.getAnoModelo();
-        this.price = fipeVehicleDTO.getValor();
+        this.carmaker = fipeVehicleDTO.getCarmaker();
+        this.model = fipeVehicleDTO.getModel();
+        this.year = fipeVehicleDTO.getModelYear();
+        this.price = fipeVehicleDTO.getPrice();
     }
 
     public VehicleDTO(Vehicle entity) {

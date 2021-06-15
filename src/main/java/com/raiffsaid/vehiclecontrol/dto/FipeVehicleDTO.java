@@ -5,108 +5,108 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FipeVehicleDTO {
 
     @JsonProperty(value = "Valor")
-    private String Valor;
+    private String price;
     @JsonProperty(value = "Marca")
-    private String Marca;
+    private String carmaker;
     @JsonProperty(value = "Modelo")
-    private String Modelo;
+    private String model;
     @JsonProperty(value = "AnoModelo")
-    private Integer AnoModelo;
+    private Integer modelYear;
     @JsonProperty(value = "Combustivel")
-    private String Combustivel;
+    private String fuelType;
     @JsonProperty(value = "CodigoFipe")
-    private String CodigoFipe;
+    private String fipeCode;
     @JsonProperty(value = "MesReferencia")
-    private String MesReferencia;
+    private String monthReference;
     @JsonProperty(value = "TipoVeiculo")
-    private Integer TipoVeiculo;
+    private Integer vehicleType;
     @JsonProperty(value = "SiglaCombustivel")
-    private String SiglaCombustivel;
+    private String fuelInitials;
 
     public FipeVehicleDTO() {
     }
 
-    public FipeVehicleDTO(String valor, String marca, String modelo, Integer anoModelo, String combustivel, String codigoFipe, String mesReferencia, Integer tipoVeiculo, String siglaCombustivel) {
-        Valor = valor;
-        Marca = marca;
-        Modelo = modelo;
-        AnoModelo = anoModelo;
-        Combustivel = combustivel;
-        CodigoFipe = codigoFipe;
-        MesReferencia = mesReferencia;
-        TipoVeiculo = tipoVeiculo;
-        SiglaCombustivel = siglaCombustivel;
+    public FipeVehicleDTO(String price, String carmaker, String model, Integer modelYear, String fuelType, String fipeCode, String monthReference, Integer vehicleType, String fuelInitials) {
+        this.price = price;
+        this.carmaker = carmaker;
+        this.model = model;
+        this.modelYear = modelYear;
+        this.fuelType = fuelType;
+        this.fipeCode = fipeCode;
+        this.monthReference = monthReference;
+        this.vehicleType = vehicleType;
+        this.fuelInitials = fuelInitials;
     }
 
-    public String getValor() {
-        return Valor;
+    public String getPrice() {
+        return price;
     }
 
-    public void setValor(String valor) {
-        Valor = valor;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
-    public String getMarca() {
-        return Marca;
+    public String getCarmaker() {
+        return carmaker;
     }
 
-    public void setMarca(String marca) {
-        Marca = marca;
+    public void setCarmaker(String carmaker) {
+        this.carmaker = carmaker;
     }
 
-    public String getModelo() {
-        return Modelo;
+    public String getModel() {
+        return model;
     }
 
-    public void setModelo(String modelo) {
-        Modelo = modelo;
+    public void setModel(String model) {
+        this.model = model;
     }
 
-    public Integer getAnoModelo() {
-        return AnoModelo;
+    public Integer getModelYear() {
+        return modelYear;
     }
 
-    public void setAnoModelo(Integer anoModelo) {
-        AnoModelo = anoModelo;
+    public void setModelYear(Integer modelYear) {
+        this.modelYear = modelYear;
     }
 
-    public String getCombustivel() {
-        return Combustivel;
+    public String getFuelType() {
+        return fuelType;
     }
 
-    public void setCombustivel(String combustivel) {
-        Combustivel = combustivel;
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
     }
 
-    public String getCodigoFipe() {
-        return CodigoFipe;
+    public String getFipeCode() {
+        return fipeCode;
     }
 
-    public void setCodigoFipe(String codigoFipe) {
-        CodigoFipe = codigoFipe;
+    public void setFipeCode(String fipeCode) {
+        this.fipeCode = fipeCode;
     }
 
-    public String getMesReferencia() {
-        return MesReferencia;
+    public String getMonthReference() {
+        return monthReference;
     }
 
-    public void setMesReferencia(String mesReferencia) {
-        MesReferencia = mesReferencia;
+    public void setMonthReference(String monthReference) {
+        this.monthReference = monthReference;
     }
 
-    public Integer getTipoVeiculo() {
-        return TipoVeiculo;
+    public Integer getVehicleType() {
+        return vehicleType;
     }
 
-    public void setTipoVeiculo(Integer tipoVeiculo) {
-        TipoVeiculo = tipoVeiculo;
+    public void setVehicleType(Integer vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
-    public String getSiglaCombustivel() {
-        return SiglaCombustivel;
+    public String getFuelInitials() {
+        return fuelInitials;
     }
 
-    public void setSiglaCombustivel(String siglaCombustivel) {
-        SiglaCombustivel = siglaCombustivel;
+    public void setFuelInitials(String fuelInitials) {
+        this.fuelInitials = fuelInitials;
     }
 }
