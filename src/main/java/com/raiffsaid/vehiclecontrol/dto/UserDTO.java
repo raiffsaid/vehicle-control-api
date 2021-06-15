@@ -2,6 +2,7 @@ package com.raiffsaid.vehiclecontrol.dto;
 
 import com.raiffsaid.vehiclecontrol.entities.User;
 import com.raiffsaid.vehiclecontrol.entities.Vehicle;
+import com.raiffsaid.vehiclecontrol.services.validation.UserInsertValid;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@UserInsertValid // Processa a verificação se já existe email e cpf no banco
 public class UserDTO implements Serializable {
 
     private Long id;
@@ -24,7 +26,7 @@ public class UserDTO implements Serializable {
 
     private String cpf;
 
-    @Past(message = "A data de nascimento nao pode ser futura")
+    @Past(message = "A data de nascimento não pode ser futura")
     private LocalDate birthDate;
 
     private List<VehicleDTO> vehicles = new ArrayList<>();

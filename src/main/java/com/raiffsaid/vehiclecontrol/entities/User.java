@@ -15,12 +15,16 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private String name;
+
     @Column(unique = true)
     private String email;
+
     @Column(unique = true)
     private String cpf;
+
     @Column//(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private LocalDate birthDate;
 
