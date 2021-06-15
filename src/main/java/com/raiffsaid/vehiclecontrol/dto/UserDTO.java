@@ -3,6 +3,10 @@ package com.raiffsaid.vehiclecontrol.dto;
 import com.raiffsaid.vehiclecontrol.entities.User;
 import com.raiffsaid.vehiclecontrol.entities.Vehicle;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,16 +15,23 @@ import java.util.List;
 public class UserDTO implements Serializable {
 
     private Long id;
+
+    @NotBlank(message = "Campo obrigatório")
     private String name;
+
+    @Email(message = "Inserir email válido")
     private String email;
+
     private String cpf;
+
+    @Past(message = "A data de nascimento nao pode ser futura")
     private LocalDate birthDate;
 
     private List<VehicleDTO> vehicles = new ArrayList<>();
 
-    public UserDTO() {
-    }
-
+//    public UserDTO() {
+//    }
+//
     public UserDTO(Long id, String name, String email, String cpf, LocalDate birthDate) {
         this.id = id;
         this.name = name;
@@ -35,10 +46,7 @@ public class UserDTO implements Serializable {
         this.email = entity.getEmail();
         this.cpf = entity.getCpf();
         this.birthDate = entity.getBirthDate();
-
-        for (Vehicle vehicle : entity.getVehicles()) {
-            this.vehicles.add(new VehicleDTO(vehicle));
-        }
+        entity.getVehicles().forEach(vehicle -> vehicles.add(new VehicleDTO(vehicle)));
     }
 
     public Long getId() {

@@ -1,9 +1,7 @@
 package com.raiffsaid.vehiclecontrol.entities;
 
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,10 +18,8 @@ public class User implements Serializable {
     @Column
     private String name;
     @Column(unique = true)
-    @Email
     private String email;
     @Column(unique = true)
-    @CPF
     private String cpf;
     @Column//(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private LocalDate birthDate;
