@@ -25,7 +25,7 @@ public class User implements Serializable {
     @Column(unique = true)
     @CPF
     private String cpf;
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    @Column//(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "user",

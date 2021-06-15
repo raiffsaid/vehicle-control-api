@@ -2,7 +2,9 @@ package com.raiffsaid.vehiclecontrol.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FipeVehicleDTO {
+import java.io.Serializable;
+
+public class FipeVehicleDTO implements Serializable {
 
     @JsonProperty(value = "Valor")
     private String price;

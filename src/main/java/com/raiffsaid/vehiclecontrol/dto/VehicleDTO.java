@@ -153,4 +153,6 @@ public class VehicleDTO implements Serializable {
     public void setRotationDayIsActive(Boolean rotationDayIsActive) {
         this.rotationDayIsActive = rotationDayIsActive;
     }
+
+
 }
