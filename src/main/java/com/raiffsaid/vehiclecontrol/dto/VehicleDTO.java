@@ -3,6 +3,8 @@ package com.raiffsaid.vehiclecontrol.dto;
 import com.raiffsaid.vehiclecontrol.entities.Vehicle;
 
 import java.io.Serializable;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 
 public class VehicleDTO implements Serializable {
 
@@ -13,6 +15,7 @@ public class VehicleDTO implements Serializable {
     private Integer year;
     private String price;
     private String rotationDay;
+    private Boolean rotationDayIsActive;
 
     public VehicleDTO() {
     }
@@ -33,28 +36,58 @@ public class VehicleDTO implements Serializable {
         this.year = entity.getYear();
         this.price = entity.getPrice();
         int lastDigit = entity.getYear() % 10;
+
+        DayOfWeek dayOfWeek = LocalDate.now().getDayOfWeek();
+
         switch (lastDigit) {
             case 0:
             case 1:
                 this.rotationDay = "segunda-feira";
+                if (dayOfWeek == DayOfWeek.MONDAY) {
+                    this.rotationDayIsActive = true;
+                } else {
+                    this.rotationDayIsActive = false;
+                }
                 break;
             case 2:
             case 3:
                 this.rotationDay = "terça-feira";
+                if (dayOfWeek == DayOfWeek.TUESDAY) {
+                    this.rotationDayIsActive = true;
+                } else {
+                    this.rotationDayIsActive = false;
+                }
                 break;
             case 4:
             case 5:
                 this.rotationDay = "quarta-feira";
+                if (dayOfWeek == DayOfWeek.WEDNESDAY) {
+                    this.rotationDayIsActive = true;
+                } else {
+                    this.rotationDayIsActive = false;
+                }
                 break;
             case 6:
             case 7:
                 this.rotationDay = "quinta-feira";
+                if (dayOfWeek == DayOfWeek.THURSDAY) {
+                    this.rotationDayIsActive = true;
+                } else {
+                    this.rotationDayIsActive = false;
+                }
                 break;
             case 8:
             case 9:
                 this.rotationDay = "sexta-feira";
+                if (dayOfWeek == DayOfWeek.FRIDAY) {
+                    this.rotationDayIsActive = true;
+                } else {
+                    this.rotationDayIsActive = false;
+                }
                 break;
         }
+
+
     }
 
     public Long getId() {
@@ -111,5 +144,13 @@ public class VehicleDTO implements Serializable {
 
     public void setRotationDay(String rotationDay) {
         this.rotationDay = rotationDay;
+    }
+
+    public Boolean getRotationDayIsActive() {
+        return rotationDayIsActive;
+    }
+
+    public void setRotationDayIsActive(Boolean rotationDayIsActive) {
+        this.rotationDayIsActive = rotationDayIsActive;
     }
 }
