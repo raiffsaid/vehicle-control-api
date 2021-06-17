@@ -35,24 +35,20 @@ public class VehicleResource {
 
     @PostMapping
     public ResponseEntity<VehicleDTO> insert(@RequestBody VehicleRegistryDTO registry) {
-        try {
-            FipeVehicleDTO fipe = getClient.vehiclePrice(
-                    registry.getVehicleType(),
-                    registry.getCarmaker(),
-                    registry.getModel(),
-                    registry.getYear());
-            VehicleDTO dto = new VehicleDTO(registry, fipe);
+        FipeVehicleDTO fipe = getClient.vehiclePrice(
+                registry.getVehicleType(),
+                registry.getCarmaker(),
+                registry.getModel(),
+                registry.getYear());
+        VehicleDTO dto = new VehicleDTO(registry, fipe);
 
-            dto = service.insert(dto);
-            URI uri = ServletUriComponentsBuilder
-                    .fromCurrentRequest()
-                    .path("/{id}")
-                    .buildAndExpand(dto.getId())
-                    .toUri();
+        dto = service.insert(dto);
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(dto.getId())
+                .toUri();
 
-            return ResponseEntity.created(uri).body(dto);
-        } catch (FeignException e) {
-            throw new FeignException.NotFound(e.getMessage(), e.request(), e.contentUTF8().getBytes(StandardCharsets.UTF_8));
-        }
+        return ResponseEntity.created(uri).body(dto);
     }
 }
