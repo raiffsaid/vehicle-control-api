@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "tb_vehicle")
@@ -20,7 +19,7 @@ public class Vehicle implements Serializable {
     @Column
     private Integer year;
     @Column
-    private String price; //BIGDECIMAL
+    private String price;
 
     @JsonIgnore
     @ManyToOne

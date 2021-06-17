@@ -15,7 +15,7 @@ public class FipeVehicleDTO implements Serializable {
     @JsonProperty(value = "AnoModelo")
     private Integer modelYear;
     @JsonProperty(value = "Combustivel")
-    private String fuelType;
+    private String fuel;
     @JsonProperty(value = "CodigoFipe")
     private String fipeCode;
     @JsonProperty(value = "MesReferencia")
@@ -28,12 +28,12 @@ public class FipeVehicleDTO implements Serializable {
     public FipeVehicleDTO() {
     }
 
-    public FipeVehicleDTO(String price, String carmaker, String model, Integer modelYear, String fuelType, String fipeCode, String monthReference, Integer vehicleType, String fuelInitials) {
+    public FipeVehicleDTO(String price, String carmaker, String model, Integer modelYear, String fuel, String fipeCode, String monthReference, Integer vehicleType, String fuelInitials) {
         this.price = price;
         this.carmaker = carmaker;
         this.model = model;
         this.modelYear = modelYear;
-        this.fuelType = fuelType;
+        this.fuel = fuel;
         this.fipeCode = fipeCode;
         this.monthReference = monthReference;
         this.vehicleType = vehicleType;
@@ -72,12 +72,12 @@ public class FipeVehicleDTO implements Serializable {
         this.modelYear = modelYear;
     }
 
-    public String getFuelType() {
-        return fuelType;
+    public String getFuel() {
+        return fuel;
     }
 
-    public void setFuelType(String fuelType) {
-        this.fuelType = fuelType;
+    public void setFuel(String fuel) {
+        this.fuel = fuel;
     }
 
     public String getFipeCode() {

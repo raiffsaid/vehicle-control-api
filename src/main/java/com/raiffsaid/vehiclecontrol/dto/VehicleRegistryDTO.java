@@ -7,6 +7,7 @@ import java.io.Serializable;
 public class VehicleRegistryDTO implements Serializable {
 
     private Long userId;
+    private String vehicleType;
     private String carmaker;
     private String model;
     private Integer year;
@@ -14,7 +15,8 @@ public class VehicleRegistryDTO implements Serializable {
     public VehicleRegistryDTO() {
     }
 
-    public VehicleRegistryDTO(String carmaker, String model, Integer year) {
+    public VehicleRegistryDTO(String vehicleType, String carmaker, String model, Integer year) {
+        this.vehicleType = vehicleType;
         this.carmaker = carmaker;
         this.model = model;
         this.year = year;
@@ -24,6 +26,14 @@ public class VehicleRegistryDTO implements Serializable {
         this.carmaker = entity.getCarmaker();
         this.model = entity.getModel();
         this.year = entity.getYear();
+    }
+
+    public String getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
     public String getCarmaker() {

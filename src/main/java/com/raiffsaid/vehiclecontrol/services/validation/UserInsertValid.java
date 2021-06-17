@@ -19,7 +19,7 @@ import javax.validation.Payload;
 
 public @interface UserInsertValid {
 
-    String message() default "Validation error";
+    String message() default "Erro de validação";
 
     Class<?>[] groups() default {};
 

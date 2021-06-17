@@ -32,7 +32,7 @@ public class VehicleService {
     @Transactional
     public VehicleDTO insert(VehicleDTO dto) {
         Vehicle vehicleEntity = new Vehicle();
-        User userEntity = userRepository.findById(dto.getUserId()).orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
+        User userEntity = userRepository.findById(dto.getUserId()).orElseThrow(() -> new IllegalArgumentException("Usuário inválido"));
 
         vehicleEntity.setCarmaker(dto.getCarmaker());
         vehicleEntity.setModel(dto.getModel());

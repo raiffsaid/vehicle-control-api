@@ -1,6 +1,5 @@
 package com.raiffsaid.vehiclecontrol.entities;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -25,11 +24,10 @@ public class User implements Serializable {
     @Column(unique = true)
     private String cpf;
 
-    @Column//(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    @Column
     private LocalDate birthDate;
 
-    @OneToMany(mappedBy = "user",
-            orphanRemoval = true)
+    @OneToMany(mappedBy = "user")
     private List<Vehicle> vehicles = new ArrayList<>();
 
     public User() {

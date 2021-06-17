@@ -36,7 +36,11 @@ public class VehicleResource {
     @PostMapping
     public ResponseEntity<VehicleDTO> insert(@RequestBody VehicleRegistryDTO registry) {
         try {
-            FipeVehicleDTO fipe = getClient.vehiclePrice(registry.getCarmaker(), registry.getModel(), registry.getYear());
+            FipeVehicleDTO fipe = getClient.vehiclePrice(
+                    registry.getVehicleType(),
+                    registry.getCarmaker(),
+                    registry.getModel(),
+                    registry.getYear());
             VehicleDTO dto = new VehicleDTO(registry, fipe);
 
             dto = service.insert(dto);

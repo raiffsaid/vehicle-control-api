@@ -16,8 +16,8 @@ public class FeignExceptionHandler {
         StandardError err = new StandardError();
         err.setTimestamp(Instant.now());
         err.setStatus(HttpStatus.BAD_REQUEST.value());
-        err.setError("Bad Request");
-        err.setMessage("Bad Request");
+        err.setError("Bad request");
+        err.setMessage("Parâmetro incorreto");
         err.setPath(e.request().url());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);

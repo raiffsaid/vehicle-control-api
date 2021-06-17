@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
         configuration = FipeVehicleDTO.class) // Serializa para FipeVehicleDTO
 public interface GetClient {
 
-    @GetMapping(value = "/carros/marcas/{carmaker}/modelos/{model}/anos/{year}-1")
-    FipeVehicleDTO vehiclePrice(@PathVariable("carmaker") String carmaker,
+    @GetMapping(value = "/{vehicleType}/marcas/{carmaker}/modelos/{model}/anos/{year}-1")
+    FipeVehicleDTO vehiclePrice(@PathVariable("vehicleType") String vehicleType,
+                                @PathVariable("carmaker") String carmaker,
                                 @PathVariable("model") String model,
                                 @PathVariable("year") Integer year);
 }
