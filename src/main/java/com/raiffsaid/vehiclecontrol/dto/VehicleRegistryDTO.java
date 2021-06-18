@@ -11,15 +11,17 @@ public class VehicleRegistryDTO implements Serializable {
     private String carmaker;
     private String model;
     private Integer year;
+    private Integer fuelType;
 
     public VehicleRegistryDTO() {
     }
 
-    public VehicleRegistryDTO(String vehicleType, String carmaker, String model, Integer year) {
+    public VehicleRegistryDTO(String vehicleType, String carmaker, String model, Integer year, Integer fuelType) {
         this.vehicleType = vehicleType;
         this.carmaker = carmaker;
         this.model = model;
         this.year = year;
+        this.fuelType = fuelType;
     }
 
     public VehicleRegistryDTO(Vehicle entity) {
@@ -32,39 +34,24 @@ public class VehicleRegistryDTO implements Serializable {
         return vehicleType;
     }
 
-    public void setVehicleType(String vehicleType) {
-        this.vehicleType = vehicleType;
-    }
-
     public String getCarmaker() {
         return carmaker;
-    }
-
-    public void setCarmaker(String carmaker) {
-        this.carmaker = carmaker;
     }
 
     public String getModel() {
         return model;
     }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
-
     public Integer getYear() {
         return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
     }
 
     public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long user_id) {
-        this.userId = user_id;
+    public Integer getFuelType() {
+        return fuelType;
     }
+
 }

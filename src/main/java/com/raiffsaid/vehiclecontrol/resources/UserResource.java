@@ -9,7 +9,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -17,13 +16,6 @@ public class UserResource {
 
     @Autowired
     private UserService service;
-
-    @GetMapping
-    public ResponseEntity<List<UserDTO>> findAll() {
-        List<UserDTO> list = service.findAll();
-
-        return ResponseEntity.ok().body(list);
-    }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserDTO> findById(@PathVariable Long id) {
