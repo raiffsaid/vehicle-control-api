@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+    spring-app:
+        image: vehicle-control
+        container_name: vehicle-control
+        ports:
+            - "8080:8080"
+        build: ./
+
