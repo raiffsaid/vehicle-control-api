@@ -26,7 +26,7 @@ public class UserDTO implements Serializable {
 
     @NotBlank(message = "Campo obrigatório")
     @Pattern(regexp = "(^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$)",
-            message = "O CPF deve ter o formato 123.456.789-09")
+            message = "O CPF deve ter o formato 123.456.789-00")
     private String cpf;
 
     @JsonFormat(pattern = "dd/MM/yyyy")

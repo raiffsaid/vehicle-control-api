@@ -1,28 +1,28 @@
 package com.raiffsaid.vehiclecontrol.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_vehicle")
-public class Vehicle implements Serializable {
+public class Vehicle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private String carmaker;
+
     @Column
     private String model;
+
     @Column
     private Integer year;
+
     @Column
     private String price;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -41,10 +41,6 @@ public class Vehicle implements Serializable {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getCarmaker() {

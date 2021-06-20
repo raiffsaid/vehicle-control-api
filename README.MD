@@ -3,7 +3,7 @@
 ## 🛠️ Technologies
 
 - Java 
-- Spring (Spring Boot)
+- Spring Boot
 - Spring Cloud OpenFeign
 - H2 Database
 
@@ -11,6 +11,7 @@
 
 - Docker Engine
 - Docker Compose
+- Maven
 
 ## 💻️ About the project
 ### The project consists in a REST API responsible for controlling user's vehicles. The application has 3 endpoints:
@@ -20,10 +21,14 @@
 ### In this project it was used the FIPE API: `https://deividfortuna.github.io/fipe/` to get the vehicle's price based on the model, carmaker and year of the vehicle. It's also needed to show the rotation day based on the last digit of the vehicle's year, and an active rotation day that returns true or false when compared to the system's current date.
 
 ## ⚙️ Running the application locally
-- Run the command below in repo root:
+- Run the commands below in repo root:
+```console
+mvn clean package
+```
 ```console
 docker-compose up --build
 ```
+
 - After the application has initialized, go to `http://localhost:8080/h2-console` to access H2 Database. To see it's data when using the application, just use the following paramaters for logging in:
   - URL: jdbc:h2:mem:testdb
   - username: sa

@@ -30,6 +30,10 @@ public class VehicleRegistryDTO implements Serializable {
         this.year = entity.getYear();
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
     public String getVehicleType() {
         return vehicleType;
     }
@@ -44,10 +48,6 @@ public class VehicleRegistryDTO implements Serializable {
 
     public Integer getYear() {
         return year;
-    }
-
-    public Long getUserId() {
-        return userId;
     }
 
     public Integer getFuelType() {
