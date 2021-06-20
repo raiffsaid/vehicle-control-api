@@ -1,9 +1,9 @@
 package com.raiffsaid.vehiclecontrol.services;
 
+import com.raiffsaid.vehiclecontrol.dto.UserDTO;
 import com.raiffsaid.vehiclecontrol.dto.VehicleDTO;
 import com.raiffsaid.vehiclecontrol.entities.User;
 import com.raiffsaid.vehiclecontrol.entities.Vehicle;
-import com.raiffsaid.vehiclecontrol.repositories.UserRepository;
 import com.raiffsaid.vehiclecontrol.repositories.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,18 +16,18 @@ public class VehicleService {
     private VehicleRepository repository;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Transactional
     public VehicleDTO insert(VehicleDTO dto) {
-        User userEntity = userRepository.findById(dto.getUserId()).orElseThrow(() -> new IllegalArgumentException("Usuário inválido"));
+        UserDTO userDto = userService.findById(dto.getUserId());
         Vehicle vehicleEntity = new Vehicle();
 
         vehicleEntity.setCarmaker(dto.getCarmaker());
         vehicleEntity.setModel(dto.getModel());
         vehicleEntity.setYear(dto.getYear());
         vehicleEntity.setPrice(dto.getPrice());
-        vehicleEntity.setUser(userEntity);
+        vehicleEntity.setUser(User.dtoToEntity(userDto));
         vehicleEntity = repository.save(vehicleEntity);
 
         return new VehicleDTO(vehicleEntity);
