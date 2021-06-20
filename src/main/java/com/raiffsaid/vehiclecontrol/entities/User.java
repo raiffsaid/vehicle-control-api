@@ -1,7 +1,8 @@
 package com.raiffsaid.vehiclecontrol.entities;
 
+import com.raiffsaid.vehiclecontrol.dto.UserDTO;
+
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_user")
-public class User implements Serializable {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,6 +80,16 @@ public class User implements Serializable {
 
     public List<Vehicle> getVehicles() {
         return vehicles;
+    }
+
+    public static User dtoToEntity(UserDTO dto) {
+        return new User(
+                dto.getId(),
+                dto.getName(),
+                dto.getEmail(),
+                dto.getCpf(),
+                dto.getBirthDate()
+        );
     }
 
     @Override
