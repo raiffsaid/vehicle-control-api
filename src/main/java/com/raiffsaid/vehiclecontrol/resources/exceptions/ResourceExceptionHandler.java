@@ -1,5 +1,6 @@
 package com.raiffsaid.vehiclecontrol.resources.exceptions;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.raiffsaid.vehiclecontrol.services.exceptions.ResourceNotFoundException;
 import feign.FeignException;
 import org.springframework.http.HttpStatus;
@@ -47,8 +48,8 @@ public class ResourceExceptionHandler {
         StandardError err = new StandardError();
         err.setTimestamp(Instant.now());
         err.setStatus(status.value());
-        err.setError("Recurso não encontrado");
-        err.setMessage(e.getMessage());
+        err.setError("Recurso inválido");
+        err.setMessage("O ID do usuário deve ser inserido");
         err.setPath(request.getRequestURI());
 
         return ResponseEntity.status(status).body(err);
@@ -72,14 +73,20 @@ public class ResourceExceptionHandler {
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<StandardError> invalidDate(HttpMessageNotReadableException e, HttpServletRequest request) {
+    public ResponseEntity<ValidationError> invalidDate(HttpMessageNotReadableException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
-        StandardError err = new StandardError();
+        ValidationError err = new ValidationError();
         err.setTimestamp(Instant.now());
         err.setStatus(status.value());
         err.setError("Erro de validação");
         err.setMessage(e.getMostSpecificCause().getMessage());
         err.setPath(request.getRequestURI());
+
+        JsonMappingException ex = (JsonMappingException) e.getCause();
+
+        for (JsonMappingException.Reference reference : ex.getPath()) {
+            err.addError(reference.getFieldName(), "A data inserida é inválida");
+        }
 
         return ResponseEntity.status(status).body(err);
     }
