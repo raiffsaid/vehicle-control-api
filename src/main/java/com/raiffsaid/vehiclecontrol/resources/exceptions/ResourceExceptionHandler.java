@@ -1,6 +1,7 @@
 package com.raiffsaid.vehiclecontrol.resources.exceptions;
 
 import com.raiffsaid.vehiclecontrol.services.exceptions.ResourceNotFoundException;
+import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -15,27 +16,39 @@ import java.time.Instant;
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
+    @ExceptionHandler(FeignException.NotFound.class)
+    public ResponseEntity<StandardError> handleFeignException(FeignException e) {
+        StandardError err = new StandardError();
+        err.setTimestamp(Instant.now());
+        err.setStatus(HttpStatus.BAD_REQUEST.value());
+        err.setError("Bad request");
+        err.setMessage("Parâmetro incorreto");
+        err.setPath(e.request().url());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+    }
+
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<StandardError> entityNotFound(ResourceNotFoundException entity, HttpServletRequest request) {
+    public ResponseEntity<StandardError> entityNotFound(ResourceNotFoundException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND;
         StandardError err = new StandardError();
         err.setTimestamp(Instant.now());
         err.setStatus(status.value());
         err.setError("Recurso não encontrado");
-        err.setMessage(entity.getMessage());
+        err.setMessage(e.getMessage());
         err.setPath(request.getRequestURI());
 
         return ResponseEntity.status(status).body(err);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<StandardError> badRequest(IllegalArgumentException entity, HttpServletRequest request) {
+    public ResponseEntity<StandardError> badRequest(IllegalArgumentException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
         StandardError err = new StandardError();
         err.setTimestamp(Instant.now());
         err.setStatus(status.value());
         err.setError("Recurso não encontrado");
-        err.setMessage(entity.getMessage());
+        err.setMessage(e.getMessage());
         err.setPath(request.getRequestURI());
 
         return ResponseEntity.status(status).body(err);
@@ -65,7 +78,7 @@ public class ResourceExceptionHandler {
         err.setTimestamp(Instant.now());
         err.setStatus(status.value());
         err.setError("Erro de validação");
-        err.setMessage(e.getMessage());
+        err.setMessage(e.getMostSpecificCause().getMessage());
         err.setPath(request.getRequestURI());
 
         return ResponseEntity.status(status).body(err);
