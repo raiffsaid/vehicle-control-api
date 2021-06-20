@@ -4,11 +4,11 @@ import com.raiffsaid.vehiclecontrol.entities.Vehicle;
 
 import java.io.Serializable;
 import java.time.DayOfWeek;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 public class VehicleDTO implements Serializable {
 
-    private static final DayOfWeek dayOfWeek = ZonedDateTime.now().getDayOfWeek();
+    private static final DayOfWeek dayOfWeek = LocalDateTime.now().getDayOfWeek();
 
     private Long id;
     private Long userId;
@@ -37,7 +37,7 @@ public class VehicleDTO implements Serializable {
         this.model = entity.getModel();
         this.year = entity.getYear();
         this.price = entity.getPrice();
-        setRotations(entity.getYear() % 10);
+        applyRotations(entity.getYear());
     }
 
     public Long getId() {
@@ -72,8 +72,12 @@ public class VehicleDTO implements Serializable {
         return rotationDayIsActive;
     }
 
-    public void setRotations(Integer lastDigit) {
-        switch (lastDigit) {
+    public int getYearLastDigit(Integer year) {
+        return year % 10;
+    }
+
+    public void applyRotations(Integer year) {
+        switch (getYearLastDigit(year)) {
             case 0:
             case 1:
                 rotationDay = "segunda-feira";
