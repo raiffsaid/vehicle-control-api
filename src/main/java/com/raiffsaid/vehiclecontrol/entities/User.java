@@ -25,7 +25,7 @@ public class User {
     @Column(unique = true)
     private String cpf;
 
-    @Column
+    @Column(name = "birthdate")
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "user")
